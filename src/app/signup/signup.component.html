@@ -1,9 +1,9 @@
-<mat-card class="login-card" role="region">
+<mat-card class="signup-card" role="region">
   <mat-card-header>
     <!-- <div mat-card-avatar class="example-header-image"></div> -->
     <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
     <mat-card-title>
-      <h2>Login to Continue</h2>
+      <h2>Register to create a new account</h2>
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
@@ -19,7 +19,7 @@
       <br>
       <mat-form-field>
         <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password"
-          (keydown)="onKeyPress($event)" tabindex="2">
+          tabindex="2">
         <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
       </mat-form-field>
@@ -29,14 +29,14 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button class="loginBtn" mat-raised-button color="primary" [disabled]="(password.invalid || email.invalid || showProgressBar) ? true : false"
-      (click)="onLoginClick()" tabindex="3">Login
+    <button class="signupBtn" mat-raised-button color="primary" [disabled]="(password.invalid || email.invalid || showProgressBar) ? true : false"
+      (click)="onSignupClick()" tabindex="3">Sign Up
     </button>
     <!-- <button mat-button>SHARE</button> -->
     <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
   </mat-card-actions>
 
   <div class="text-center">
-    <a routerLink="/signup" tabindex="4">Need an Account? Register here</a>
+    <a routerLink="/login" tabindex="4">Already have an account? Login to Continue</a>
   </div>
 </mat-card>

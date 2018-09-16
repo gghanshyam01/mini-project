@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-header-nav',
@@ -9,15 +10,28 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./header-nav.component.css']
 })
 export class HeaderNavComponent {
-
-  navLink = 'Sign Up';
+  @ViewChild('drawer') drawer: MatDrawer;
+  constructor(private breakpointObserver: BreakpointObserver) { }
+  // navLinks = ['Log In', 'Sign Up'];
+  navLinks = [
+    {
+      name: 'Log In',
+      url: 'login'
+    },
+    {
+      name: 'Sign Up',
+      url: 'signup'
+    }
+  ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  onSidenavClick() {
+    this.drawer.close();
+  }
 
 
 }
