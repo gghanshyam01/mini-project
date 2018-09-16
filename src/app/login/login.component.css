@@ -1,0 +1,31 @@
+.login-card {
+    max-width: 400px;
+    margin: 50px auto;
+  }
+  
+  /* .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  } */
+  
+  /* mat-card {
+    
+    width: 80%;
+  } */
+
+  .form-holder {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-holder > * {
+    width: 100%;
+  }
+
+  .loginBtn {
+    width: 100%;
+  }
+
+  .text-center {
+    text-align: center;
+  }
