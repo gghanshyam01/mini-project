@@ -19,8 +19,8 @@
       <!-- This fills the remaining space of the current row -->
       <span class="example-fill-remaining-space"></span>
 
-      <span *ngIf="!(isHandset$ | async)"><button mat-button>
-          {{ navLink }}</button></span>
+      <span *ngIf="!(isHandset$ | async)"><a mat-button>
+          {{ navLink }}</a></span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

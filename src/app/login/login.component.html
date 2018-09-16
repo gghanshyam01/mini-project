@@ -12,29 +12,31 @@
     <div class="form-holder">
       <br>
       <mat-form-field>
-        <input matInput placeholder="Enter your email" [formControl]="email">
+        <input matInput placeholder="Enter your email" [formControl]="email" tabindex="1">
         <mat-icon matSuffix>email</mat-icon>
         <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
       </mat-form-field>
       <br>
       <mat-form-field>
         <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password"
-          (keydown)="onKeyPress($event)">
+          (keydown)="onKeyPress($event)" tabindex="2">
         <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
-
+    <div>
+      <a href="" tabindex="5">Forgot Password?</a>
+    </div>
   </mat-card-content>
   <mat-card-actions>
     <button class="loginBtn" mat-raised-button color="primary" [disabled]="(password.invalid || email.invalid || showProgressBar) ? true : false"
-      (click)="onLoginClick()">Login
+      (click)="onLoginClick()" tabindex="3">Login
     </button>
     <!-- <button mat-button>SHARE</button> -->
     <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
   </mat-card-actions>
 
   <div class="text-center">
-    <a href="">Need an Account? Register here</a>
+    <a href="" tabindex="4">Need an Account? Register here</a>
   </div>
 </mat-card>
