@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {
     MatToolbarModule,
     MatButtonModule,
@@ -10,7 +11,9 @@ import {
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSelectModule,
+    MatDatepickerModule
 } from '@angular/material';
 
 const ngMaterialModules = [
@@ -25,7 +28,10 @@ const ngMaterialModules = [
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatMomentDateModule
 ];
 @NgModule({
     exports: ngMaterialModules,

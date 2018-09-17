@@ -7,8 +7,7 @@
     autoFocus="false" [mode]="(isHandset$ | async) ? 'push' : 'side'">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let navLink of navLinks" routerLink="{{ '/' + navLink.url }}" (click)="onSidenavClick()">{{
-        navLink.name }}</a>
+      <a mat-list-item *ngFor="let navLink of navLinks" routerLink="{{ '/' + navLink.url }}" (click)="onSidenavClick()">{{ navLink.name }}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

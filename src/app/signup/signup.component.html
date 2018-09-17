@@ -21,7 +21,7 @@
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Enter your email" formControlName="email" type="email" tabindex="4" required>
-          <mat-icon matSuffix>email</mat-icon>
+          <!-- <mat-icon matSuffix>email</mat-icon> -->
           <mat-error *ngIf="signupForm.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -29,7 +29,17 @@
           <mat-error *ngIf="signupForm.invalid"></mat-error>
         </mat-form-field>
         <mat-form-field>
-          
+          <mat-select placeholder="Select your gender" required>
+            <mat-option>--clear--</mat-option>
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+          </mat-select>
+          <mat-error *ngIf="signupForm.invalid"></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="myDatepicker">
+          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"
