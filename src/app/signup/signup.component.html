@@ -14,16 +14,16 @@
       <div class="form-holder">
         <br>
         <mat-form-field>
-          <input matInput placeholder="Enter your email" formControlName="email" [type]="email" tabindex="1" required>
+          <input matInput placeholder="Enter your email" formControlName="email" type="email" tabindex="1" required>
           <mat-icon matSuffix>email</mat-icon>
-          <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+          <mat-error *ngIf="signupForm.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
         <br>
         <mat-form-field>
           <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"
             tabindex="2" minlength="5" required>
           <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-          <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+          <mat-error *ngIf="signupForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
       <br>
@@ -32,7 +32,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button class="signupBtn" type="submit" mat-raised-button color="primary" [disabled]="(password.invalid || email.invalid || showProgressBar) ? true : false"
+      <button class="signupBtn" type="submit" mat-raised-button color="primary" [disabled]="(signupForm.invalid || showProgressBar) ? true : false"
         tabindex="3">Sign Up
       </button>
       <!-- <button mat-button>SHARE</button> -->

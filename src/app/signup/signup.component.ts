@@ -7,13 +7,13 @@ import { FormControl, Validators, FormBuilder } from '@angular/forms';
     styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-    email = new FormControl('', [Validators.required, Validators.email]);
-    password = new FormControl('', [Validators.required, Validators.minLength(5)]);
+    // email = new FormControl('', [Validators.required, Validators.email]);
+    // password = new FormControl('', [Validators.required, Validators.minLength(5)]);
     showProgressBar = false;
     hide = true;
     signupForm = this.fb.group({
-        email: this.email,
-        password: this.password
+        email: ['', Validators.compose([Validators.required, Validators.email])],
+        password: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
     });
     constructor(private fb: FormBuilder) { }
 
@@ -21,16 +21,18 @@ export class SignupComponent implements OnInit {
     }
 
     getEmailErrorMessage(): string {
-        return this.email.hasError('required') ? 'You must enter a value' :
-            this.email.hasError('email') ? 'Not a valid email' : '';
+        const emailControl = this.signupForm.controls.email;
+        return emailControl.hasError('required') ? 'You must enter a value' :
+            emailControl.hasError('email') ? 'Not a valid email' : '';
     }
 
     getPasswordErrorMessage(): string {
-        return this.password.hasError('required') ? 'You must enter a value' :
-            this.password.hasError('minlength') ? 'Password should be min 5 characters' : '';
+        const passwdControl = this.signupForm.controls.password;
+        return passwdControl.hasError('required') ? 'You must enter a value' :
+            passwdControl.hasError('minlength') ? 'Password should be min 5 characters' : '';
     }
 
     onSignupClick() {
-        console.log(this.signupForm.value);
+        console.log(this.signupForm);
     }
 }

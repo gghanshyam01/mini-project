@@ -8,13 +8,13 @@ import { FormControl, Validators, FormBuilder } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-    email = new FormControl('', [Validators.required, Validators.email]);
-    password = new FormControl('', [Validators.required, Validators.minLength(5)]);
+    // email = new FormControl('', [Validators.required, Validators.email]);
+    // password = new FormControl('', [Validators.required, Validators.minLength(5)]);
     showProgressBar = false;
     hide = true;
     loginForm = this.fb.group({
-        email: this.email,
-        password: this.password
+        email: ['', Validators.compose([Validators.required, Validators.email])],
+        password: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
     });
     constructor(private fb: FormBuilder) { }
 
@@ -24,19 +24,21 @@ export class LoginComponent implements OnInit {
     onKeyPress(evt: KeyboardEvent) {
         // console.log(evt);
         if (evt.keyCode === 13) {
-            if (!(this.email.invalid || this.password.invalid)) {
+            if (this.loginForm.valid) {
                 this.onLoginClick();
             }
         }
     }
 
     getEmailErrorMessage(): string {
-        return this.email.hasError('required') ? 'You must enter a value' :
-            this.email.hasError('email') ? 'Not a valid email' : '';
+        const emailControl = this.loginForm.controls.email;
+        return emailControl.hasError('required') ? 'You must enter a value' :
+            emailControl.hasError('email') ? 'Not a valid email' : '';
     }
     getPasswordErrorMessage(): string {
-        return this.password.hasError('required') ? 'You must enter a value' :
-            this.password.hasError('minlength') ? 'Password should be min 5 characters' : '';
+        const passwdControl = this.loginForm.controls.password;
+        return passwdControl.hasError('required') ? 'You must enter a value' :
+            passwdControl.hasError('minlength') ? 'Password should be min 5 characters' : '';
     }
 
     onLoginClick() {
