@@ -8,17 +8,35 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <form [formGroup]="signupForm" (ngSubmit)="onSignupClick()">
-
-
     <mat-card-content>
       <div class="form-holder">
         <br>
         <mat-form-field>
-          <input matInput placeholder="Enter your email" formControlName="email" type="email" tabindex="1" required>
+          <input matInput placeholder="Enter your first name" tabindex="1" required>
+          <mat-error *ngIf="signupForm.invalid"></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter your last name" tabindex="2" required>
+          <mat-error *ngIf="signupForm.invalid"></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter your email" formControlName="email" type="email" tabindex="4" required>
           <mat-icon matSuffix>email</mat-icon>
           <mat-error *ngIf="signupForm.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
-        <br>
+        <mat-form-field>
+          <input matInput placeholder="Enter your mobile number" tabindex="3" required>
+          <mat-error *ngIf="signupForm.invalid"></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"
+            tabindex="2" minlength="5" required>
+          <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="signupForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"
             tabindex="2" minlength="5" required>

@@ -1,5 +1,5 @@
 .signup-card {
-    max-width: 400px;
+    max-width: 600px;
     margin: 50px auto;
   }
   
@@ -15,11 +15,14 @@
 
   .form-holder {
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
+    justify-content: center;
   }
-  
-  .form-holder > * {
-    width: 100%;
+
+  mat-form-field {
+    /* width: 270px; */
+    flex: 1 1 auto;
+    margin: 15px;
   }
 
   .signupBtn {
@@ -29,3 +32,16 @@
   .text-center {
     text-align: center;
   }
+
+  @media screen and (max-width: 700px) {
+    .form-holder {
+      display: flex;
+      flex-direction: column;
+    }
+    .signup-card {
+      max-width: 400px;
+    }
+    mat-form-field {
+      width: 100%;
+    }
+  } 

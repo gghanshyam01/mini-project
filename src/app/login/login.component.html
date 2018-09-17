@@ -8,12 +8,9 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <form [formGroup]="loginForm" (ngSubmit)="onLoginClick()">
-    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
     <mat-card-content>
       <div class="form-holder">
         <br>
-
-
         <mat-form-field>
           <input matInput placeholder="Enter your email" formControlName="email" tabindex="1" type="email" required>
           <mat-icon matSuffix>email</mat-icon>
