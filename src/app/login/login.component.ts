@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-login',
@@ -9,10 +9,14 @@ import { FormControl, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
     email = new FormControl('', [Validators.required, Validators.email]);
-    password = new FormControl('', [Validators.required]);
+    password = new FormControl('', [Validators.required, Validators.minLength(5)]);
     showProgressBar = false;
     hide = true;
-    constructor() { }
+    loginForm = this.fb.group({
+        email: this.email,
+        password: this.password
+    });
+    constructor(private fb: FormBuilder) { }
 
     ngOnInit() {
     }
@@ -28,15 +32,16 @@ export class LoginComponent implements OnInit {
 
     getEmailErrorMessage(): string {
         return this.email.hasError('required') ? 'You must enter a value' :
-            this.email.hasError('email') ? 'Not a valid email' :
-                '';
+            this.email.hasError('email') ? 'Not a valid email' : '';
     }
     getPasswordErrorMessage(): string {
-        return this.password.hasError('required') ? 'You must enter a value' : '';
+        return this.password.hasError('required') ? 'You must enter a value' :
+            this.password.hasError('minlength') ? 'Password should be min 5 characters' : '';
     }
 
     onLoginClick() {
         this.showProgressBar = true;
+        console.log(this.loginForm.value);
         return setTimeout(() => {
             console.log('Logged In');
             this.showProgressBar = false;
