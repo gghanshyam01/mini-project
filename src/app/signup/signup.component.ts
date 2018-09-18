@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-signup',
@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
         lastName: ['', Validators.required],
         email: ['', Validators.compose([Validators.required, Validators.email])],
         mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10),
-            Validators.maxLength(10)])],
+        Validators.maxLength(10)])],
         gender: ['', Validators.required],
         dob: ['', Validators.required],
         password: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
@@ -46,23 +46,25 @@ export class SignupComponent implements OnInit {
     getMobileErrorMessage(): string {
         const mobileNumberControl = this.signupForm.controls.mobileNumber;
         return mobileNumberControl.hasError('required') ? 'You must enter a value' :
-        mobileNumberControl.hasError('minlength') ? 'Should be 10 digits' : '';
+            mobileNumberControl.hasError('minlength') ? 'Should be 10 digits' : '';
     }
+
     getGenderErrorMessage(): string {
         const genderControl = this.signupForm.controls.gender;
         return genderControl.hasError('required') ? 'You must select a value' : '';
     }
+
     getDobErrorMessage(): string {
         const dobControl = this.signupForm.controls.dob;
         return dobControl.hasError('required') ? 'You must select a value' : '';
     }
-
 
     getPasswordErrorMessage(): string {
         const passwdControl = this.signupForm.controls.password;
         return passwdControl.hasError('required') ? 'You must enter a value' :
             passwdControl.hasError('minlength') ? 'Password should be min 5 characters' : '';
     }
+
     getConfirmPasswordErrorMessage(): string {
         const confirmPasswdControl = this.signupForm.controls.confirmPassword;
         return confirmPasswdControl.hasError('required') ? 'You must enter a value' :

@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "git-publish": "ng build --prod --build-optimizer --base-href=https://gghanshyam01.github.io/mini-project/ &&   angular-cli-ghpages --dir=dist/CRM"
+    "build-opt": "ng build --prod --build-optimizer --base-href=https://gghanshyam01.github.io/mini-project/",
+    "git-publish": "angular-cli-ghpages --dir=dist/CRM"
   },
   "private": true,
   "dependencies": {

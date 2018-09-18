@@ -38,9 +38,10 @@
           <mat-error *ngIf="signupForm.invalid">{{ getGenderErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput [matDatepicker]="myDatepicker" tabindex="6" formControlName="dob" required>
-          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-          <mat-datepicker #myDatepicker></mat-datepicker>
+          <input matInput [matDatepicker]="myDatepicker" tabindex="6" formControlName="dob" placeholder="Enter your DOB"
+            required>
+          <mat-datepicker-toggle matPrefix [for]="myDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi="true" #myDatepicker></mat-datepicker>
           <mat-error *ngIf="signupForm.invalid">{{ getDobErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -57,9 +58,9 @@
         </mat-form-field>
       </div>
       <br>
-      <div>
+      <!-- <div>
         <a href="" tabindex="10">Forgot Password?</a>
-      </div>
+      </div> -->
     </mat-card-content>
     <mat-card-actions>
       <button class="signupBtn" type="submit" mat-raised-button color="primary" [disabled]="(signupForm.invalid || showProgressBar) ? true : false"
@@ -70,6 +71,6 @@
     </mat-card-actions>
   </form>
   <div class="text-center">
-    <a routerLink="/login" tabindex="11">Already have an account? Login to Continue</a>
+    <a routerLink="/login" tabindex="10">Already have an account? Login to Continue</a>
   </div>
 </mat-card>
