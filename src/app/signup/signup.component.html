@@ -12,62 +12,64 @@
       <div class="form-holder">
         <br>
         <mat-form-field>
-          <input matInput placeholder="Enter your first name" tabindex="1" required>
-          <mat-error *ngIf="signupForm.invalid"></mat-error>
+          <input matInput placeholder="Enter your first name" tabindex="1" formControlName="firstName" required>
+          <mat-error *ngIf="signupForm.invalid">{{ getFNameErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Enter your last name" tabindex="2" required>
-          <mat-error *ngIf="signupForm.invalid"></mat-error>
+          <input matInput placeholder="Enter your last name" tabindex="2" formControlName="lastName" required>
+          <mat-error *ngIf="signupForm.invalid">{{ getLNameErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Enter your email" formControlName="email" type="email" tabindex="4" required>
+          <input matInput placeholder="Enter your email" formControlName="email" type="email" tabindex="3" required>
           <!-- <mat-icon matSuffix>email</mat-icon> -->
           <mat-error *ngIf="signupForm.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Enter your mobile number" tabindex="3" required>
-          <mat-error *ngIf="signupForm.invalid"></mat-error>
+          <input matInput placeholder="Enter your mobile number" tabindex="4" formControlName="mobileNumber" minlength="10"
+            maxlength="10" required>
+          <mat-error *ngIf="signupForm.invalid">{{ getMobileErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Select your gender" required>
+          <mat-select placeholder="Select your gender" formControlName="gender" tabindex="5" required>
             <mat-option>--clear--</mat-option>
             <mat-option value="Male">Male</mat-option>
             <mat-option value="Female">Female</mat-option>
           </mat-select>
-          <mat-error *ngIf="signupForm.invalid"></mat-error>
+          <mat-error *ngIf="signupForm.invalid">{{ getGenderErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput [matDatepicker]="myDatepicker">
+          <input matInput [matDatepicker]="myDatepicker" tabindex="6" formControlName="dob" required>
           <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
           <mat-datepicker #myDatepicker></mat-datepicker>
+          <mat-error *ngIf="signupForm.invalid">{{ getDobErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"
-            tabindex="2" minlength="5" required>
+            tabindex="7" minlength="5" required>
           <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
           <mat-error *ngIf="signupForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"
-            tabindex="2" minlength="5" required>
+          <input matInput placeholder="Confirm your password" [type]="hide ? 'password' : 'text'" tabindex="8"
+            formControlName="confirmPassword" minlength="5" required>
           <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-          <mat-error *ngIf="signupForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
+          <mat-error *ngIf="signupForm.invalid">{{getConfirmPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
       <br>
       <div>
-        <a href="" tabindex="5">Forgot Password?</a>
+        <a href="" tabindex="10">Forgot Password?</a>
       </div>
     </mat-card-content>
     <mat-card-actions>
       <button class="signupBtn" type="submit" mat-raised-button color="primary" [disabled]="(signupForm.invalid || showProgressBar) ? true : false"
-        tabindex="3">Sign Up
+        tabindex="9">Sign Up
       </button>
       <!-- <button mat-button>SHARE</button> -->
       <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
     </mat-card-actions>
   </form>
   <div class="text-center">
-    <a routerLink="/login" tabindex="4">Already have an account? Login to Continue</a>
+    <a routerLink="/login" tabindex="11">Already have an account? Login to Continue</a>
   </div>
 </mat-card>
