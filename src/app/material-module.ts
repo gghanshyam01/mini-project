@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { LayoutModule } from '@angular/cdk/layout';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {
     MatToolbarModule,
@@ -19,7 +18,7 @@ import {
 const ngMaterialModules = [
     MatToolbarModule,
     MatButtonModule,
-    LayoutModule,
+    // LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
