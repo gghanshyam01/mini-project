@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 
+import { AuthService } from '../auth.service';
+
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
@@ -16,13 +18,13 @@ export class SignupComponent implements OnInit {
         lastName: ['', Validators.required],
         email: ['', Validators.compose([Validators.required, Validators.email])],
         mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10),
-        Validators.maxLength(10)])],
+                        Validators.maxLength(10)])],
         gender: ['', Validators.required],
         dob: ['', Validators.required],
         password: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
         confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
     });
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder, private authService: AuthService) { }
 
     ngOnInit() {
     }
@@ -72,6 +74,6 @@ export class SignupComponent implements OnInit {
     }
 
     onSignupClick() {
-        console.log(this.signupForm);
+        this.authService.registerUser(this.signupForm.value);
     }
 }
