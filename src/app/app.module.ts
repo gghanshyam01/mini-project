@@ -7,10 +7,10 @@ import { MaterialModule } from './material-module';
 
 import { AppComponent } from './app.component';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { SignupComponent } from './signup/signup.component';
-import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
