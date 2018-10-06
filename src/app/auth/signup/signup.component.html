@@ -47,14 +47,16 @@
         <mat-form-field>
           <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"
             tabindex="7" minlength="5" required>
-          <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' :
+            'visibility_off'}}</mat-icon>
           <mat-error *ngIf="signupForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Confirm your password" [type]="hide ? 'password' : 'text'" tabindex="8"
             formControlName="confirmPassword" minlength="5" required>
-          <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-          <mat-error *ngIf="signupForm.invalid">{{getConfirmPasswordErrorMessage()}}</mat-error>
+          <mat-icon style="cursor: pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility' :
+            'visibility_off'}}</mat-icon>
+          <mat-error>{{getConfirmPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
       <br>
@@ -63,7 +65,7 @@
       </div> -->
     </mat-card-content>
     <mat-card-actions>
-      <button class="signupBtn" type="submit" mat-raised-button color="primary" [disabled]="(signupForm.invalid || showProgressBar) ? true : false"
+      <button class="signupBtn" type="submit" mat-raised-button color="primary" [disabled]="(signupForm.invalid || showProgressBar)"
         tabindex="9">Sign Up
       </button>
       <!-- <button mat-button>SHARE</button> -->

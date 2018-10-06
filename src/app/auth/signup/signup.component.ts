@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { AuthService } from '../auth.service';
 
@@ -18,12 +18,12 @@ export class SignupComponent implements OnInit {
         lastName: ['', Validators.required],
         email: ['', Validators.compose([Validators.required, Validators.email])],
         mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10),
-                        Validators.maxLength(10)])],
+        Validators.maxLength(10)])],
         gender: ['', Validators.required],
         dob: ['', Validators.required],
         password: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-        confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-    });
+        confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
+    }, { validator: this.matchPasswordsValidator('password', 'confirmPassword') });
     constructor(private fb: FormBuilder, private authService: AuthService) { }
 
     ngOnInit() {
@@ -62,15 +62,28 @@ export class SignupComponent implements OnInit {
     }
 
     getPasswordErrorMessage(): string {
-        const passwdControl = this.signupForm.controls.password;
-        return passwdControl.hasError('required') ? 'You must enter a value' :
-            passwdControl.hasError('minlength') ? 'Password should be min 5 characters' : '';
+        const passwordControl = this.signupForm.controls.password;
+        return passwordControl.hasError('required') ? 'You must enter a value' :
+            passwordControl.hasError('minlength') ? 'Password should be min 5 characters' : '';
     }
 
     getConfirmPasswordErrorMessage(): string {
         const confirmPasswdControl = this.signupForm.controls.confirmPassword;
         return confirmPasswdControl.hasError('required') ? 'You must enter a value' :
-            confirmPasswdControl.hasError('minlength') ? 'Password should be min 5 characters' : '';
+            confirmPasswdControl.hasError('minlength') ? 'Password should be min 5 characters' :
+                confirmPasswdControl.hasError('passwordsMatchError') ? 'Passwords do not match' : '';
+    }
+
+    matchPasswordsValidator(password: string, confirmPassword: string) {
+        return (group: FormGroup) => {
+            const confirmPasswdControl = group.controls[confirmPassword];
+            const passwdControl = group.controls[password];
+            if (confirmPasswdControl.value !== passwdControl.value) {
+                return confirmPasswdControl.setErrors({ passwordsMatchError: true });
+            } else {
+                confirmPasswdControl.setErrors(confirmPasswdControl.validator(confirmPasswdControl));
+            }
+        };
     }
 
     onSignupClick() {

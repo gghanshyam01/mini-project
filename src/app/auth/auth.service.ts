@@ -11,7 +11,8 @@ export class AuthService {
   constructor(private http: HttpClient) { }
   registerUser(user: User) {
     // console.log(user.confirmPassword);
-    this.http.post(`/api/auth/registeruser`, user)
+    user.confirmPassword = undefined;
+    this.http.post(`/api/auth/users`, user)
       .subscribe((res) => console.log(res));
   }
 }
