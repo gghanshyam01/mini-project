@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -12,6 +12,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-password.component';
+import { HttpErrorHandler } from './shared/http-error-handler';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,12 @@ import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-pas
     MaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: HttpErrorHandler
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

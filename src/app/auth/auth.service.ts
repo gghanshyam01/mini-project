@@ -7,12 +7,12 @@ import { User } from '../shared/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   registerUser(user: User) {
     // console.log(user.confirmPassword);
     user.confirmPassword = undefined;
-    this.http.post(`/api/auth/users`, user)
-      .subscribe((res) => console.log(res));
+    this.http.post(`/api/auth/users/register`, user).subscribe(
+      res => console.log(res)
+    );
   }
 }
