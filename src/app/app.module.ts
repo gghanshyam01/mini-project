@@ -13,6 +13,9 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-password.component';
 import { HttpErrorHandler } from './shared/http-error-handler';
+import { UserHomeComponent } from './user/user-home/user-home.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { UserActivateComponent } from './auth/user-activate/user-activate.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { HttpErrorHandler } from './shared/http-error-handler';
     HeaderNavComponent,
     LoginComponent,
     SignupComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    UserHomeComponent,
+    AdminHomeComponent,
+    UserActivateComponent
   ],
   imports: [
     BrowserModule,

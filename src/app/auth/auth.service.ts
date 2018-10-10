@@ -11,8 +11,6 @@ export class AuthService {
   registerUser(user: User) {
     // console.log(user.confirmPassword);
     user.confirmPassword = undefined;
-    this.http.post(`/api/auth/users/register`, user).subscribe(
-      res => console.log(res)
-    );
+    return this.http.post(`/api/auth/users/register`, user);
   }
 }

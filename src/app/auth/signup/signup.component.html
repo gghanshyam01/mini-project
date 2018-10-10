@@ -59,7 +59,14 @@
           <mat-error>{{getConfirmPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-      <br>
+      <div class="text-center">
+        <mat-error>{{ error }}</mat-error>
+      </div>
+      <div class="text-center">
+        <mat-chip-list>
+          <mat-chip color="accent" *ngIf="message.length > 0" selected>{{ message }}</mat-chip>
+        </mat-chip-list>
+      </div>
       <!-- <div>
         <a href="" tabindex="10">Forgot Password?</a>
       </div> -->

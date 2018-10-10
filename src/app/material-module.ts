@@ -12,7 +12,8 @@ import {
     MatInputModule,
     MatProgressBarModule,
     MatSelectModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatChipsModule
 } from '@angular/material';
 
 const ngMaterialModules = [
@@ -30,7 +31,8 @@ const ngMaterialModules = [
     MatProgressBarModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatChipsModule
 ];
 @NgModule({
     exports: ngMaterialModules,
