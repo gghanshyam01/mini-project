@@ -30,7 +30,10 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button type="submit" class="loginBtn" mat-raised-button color="primary" [disabled]="(loginForm.invalid || showProgressBar) ? true : false"
+      <div class="text-center">
+        <mat-error>{{ error }}</mat-error>
+      </div>
+      <button type="submit" class="loginBtn" mat-raised-button color="primary" [disabled]="(loginForm.invalid || showProgressBar)"
         tabindex="3">
         Login
       </button>

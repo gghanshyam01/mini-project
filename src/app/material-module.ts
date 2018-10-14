@@ -13,13 +13,13 @@ import {
     MatProgressBarModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
 } from '@angular/material';
 
 const ngMaterialModules = [
     MatToolbarModule,
     MatButtonModule,
-    // LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -32,7 +32,8 @@ const ngMaterialModules = [
     MatSelectModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
 ];
 @NgModule({
     exports: ngMaterialModules,

@@ -132,7 +132,7 @@ export class SignupComponent implements OnInit {
         this.message = res.msg;
         this.showProgressBar = false;
       },
-      err => {
+      (err) => {
         const monErr = err.error.errors;
         this.showProgressBar = false;
         if (monErr.email) {
