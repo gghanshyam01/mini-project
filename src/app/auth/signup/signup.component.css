@@ -19,7 +19,7 @@
     justify-content: center;
   }
 
-  mat-form-field {
+  mat-form-field, mat-checkbox {
     /* width: 270px; */
     flex: 1 1 auto;
     margin: 15px;

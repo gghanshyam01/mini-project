@@ -2,18 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { User } from '../shared/user.model';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  loginStatusSource = new Subject<boolean>();
+  loginStatusSource = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient) {}
 
-  registerUser(user: User) {
-    user.confirmPassword = undefined;
+  registerUser(user: FormData) {
     return this.http.post(`/api/auth/users/register`, user);
   }
 
@@ -22,7 +21,9 @@ export class AuthService {
   }
 
   logoutUser() {
-    return this.http.delete(`/api/auth/users/me/logout`, { observe: 'response' });
+    return this.http.delete(`/api/auth/users/me/logout`, {
+      observe: 'response'
+    });
   }
 
   isAuthenticated() {

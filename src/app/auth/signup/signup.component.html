@@ -7,7 +7,7 @@
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
-  <form [formGroup]="signupForm" (ngSubmit)="onSignupClick()">
+  <form [formGroup]="signupForm" enctype="multipart/form-data" (ngSubmit)="onSignupClick()">
     <mat-card-content>
       <div class="form-holder">
         <br>
@@ -31,14 +31,14 @@
         </mat-form-field>
         <mat-form-field>
           <mat-select placeholder="Select your gender" formControlName="gender" tabindex="5" required>
-            <mat-option>--clear--</mat-option>
             <mat-option value="Male">Male</mat-option>
             <mat-option value="Female">Female</mat-option>
+            <mat-option value="Transgender">Transgender</mat-option>
           </mat-select>
           <mat-error *ngIf="signupForm.invalid">{{ getGenderErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput [matDatepicker]="myDatepicker" tabindex="6" formControlName="dob" placeholder="Enter your DOB"
+          <input matInput [matDatepicker]="myDatepicker" tabindex="6" formControlName="dob" placeholder="Enter your Date of Birth"
             required>
           <mat-datepicker-toggle matPrefix [for]="myDatepicker"></mat-datepicker-toggle>
           <mat-datepicker #myDatepicker></mat-datepicker>
@@ -58,7 +58,14 @@
             'visibility_off'}}</mat-icon>
           <mat-error>{{getConfirmPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
+
+        <button type="button" style="flex: 1 1 auto; margin: 15px;" mat-raised-button (click)="file.click()">Upload
+          Image ({{ fileName }})</button>
+
+        <input #file type="file" name="photo" (change)="upload(file.files[0])" accept="image/*;" capture="true" style="display: none">
+
       </div>
+      <mat-checkbox [checked]="checked">Register as Admin</mat-checkbox>
       <div class="text-center">
         <mat-error>{{ error }}</mat-error>
       </div>

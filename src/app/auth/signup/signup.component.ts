@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { AuthService } from '../auth.service';
-import { MongooseError } from 'src/app/shared/mongoose-error.interface';
 
 @Component({
   selector: 'app-signup',
@@ -11,10 +9,13 @@ import { MongooseError } from 'src/app/shared/mongoose-error.interface';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  checked = true;
   showProgressBar = false;
   hide = true;
   error = '';
   message = '';
+  fileName = 'No file chosen';
+  file: File;
 
   signupForm = this.fb.group(
     {
@@ -38,17 +39,21 @@ export class SignupComponent implements OnInit {
       confirmPassword: [
         '',
         Validators.compose([Validators.required, Validators.minLength(5)])
-      ]
+      ],
+      isAdmin: ['']
     },
     { validator: this.matchPasswordsValidator('password', 'confirmPassword') }
   );
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit() {}
+
+  upload(file: File) {
+    if (file) {
+      this.fileName = file.name;
+      this.file = file;
+    }
+  }
 
   getFNameErrorMessage(): string {
     const firstNameControl = this.signupForm.controls.firstName;
@@ -126,15 +131,25 @@ export class SignupComponent implements OnInit {
 
   onSignupClick() {
     this.message = '';
+    this.error = '';
     this.showProgressBar = true;
-    this.authService.registerUser(this.signupForm.value).subscribe(
+    const formData = new FormData();
+    const form = this.signupForm.value;
+    console.log(form);
+    Object.keys(form).forEach(key => formData.append(key, form[key]));
+    formData.append('img', this.file);
+
+    this.authService.registerUser(formData).subscribe(
       (res: any) => {
         this.message = res.msg;
         this.showProgressBar = false;
       },
-      (err) => {
+      err => {
         const monErr = err.error.errors;
         this.showProgressBar = false;
+        if (!monErr) {
+          return this.error = 'Some error occurred. Please try again';
+        }
         if (monErr.email) {
           this.error = monErr.email.message;
         } else if (monErr.mobileNumber) {

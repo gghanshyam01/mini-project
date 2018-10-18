@@ -14,7 +14,8 @@ import {
     MatSelectModule,
     MatDatepickerModule,
     MatChipsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
 } from '@angular/material';
 
 const ngMaterialModules = [
@@ -33,7 +34,8 @@ const ngMaterialModules = [
     MatDatepickerModule,
     MatMomentDateModule,
     MatChipsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
 ];
 @NgModule({
     exports: ngMaterialModules,
