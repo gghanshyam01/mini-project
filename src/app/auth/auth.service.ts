@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   loginUser(user: User) {
-    return this.http.post(`/api/auth/users/login`, user);
+    return this.http.post<User>(`/api/auth/users/login`, user);
   }
 
   logoutUser() {

@@ -9,11 +9,10 @@ import { MaterialModule } from './material-module';
 import { AppComponent } from './app.component';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
 import { LoginComponent } from './auth/login/login.component';
-import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-password.component';
-import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { UserActivateComponent } from './auth/user-activate/user-activate.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { UserActivateComponent } from './auth/user-activate/user-activate.compon
     LoginComponent,
     SignupComponent,
     ForgotPasswordComponent,
-    AdminHomeComponent,
     UserActivateComponent
   ],
   imports: [

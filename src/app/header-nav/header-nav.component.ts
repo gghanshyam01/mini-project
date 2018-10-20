@@ -61,6 +61,7 @@ export class HeaderNavComponent implements OnInit, OnDestroy {
           if (sidenav) {
             this.onSidenavClick();
           }
+          this.authService.loginStatusSource.next(false);
           this.showProgressBar = false;
         } else {
           if (sidenav) {

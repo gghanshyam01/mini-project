@@ -59,7 +59,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLoginClick() {
     this.showProgressBar = true;
     this.subs = this.authService.loginUser(this.loginForm.value).subscribe(
-      res => {
+      user => {
+        console.log('Login', user);
+        this.authService.loginStatusSource.next(true);
+        if (user.isAdmin) {
+          return this.router.navigateByUrl('/admin-home');
+        }
         this.router.navigateByUrl('/user-home');
       },
       err => {

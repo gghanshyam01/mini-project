@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'admin-home',
-    component: AdminHomeComponent,
+    loadChildren: './admin/admin.module#AdminModule',
     canLoad: [AuthGuard]
   },
   { path: 'activate/:token', component: UserActivateComponent }
