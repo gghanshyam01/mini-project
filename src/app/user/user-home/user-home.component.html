@@ -1,6 +1,6 @@
-<p>
-  user-home works!
-</p>
-<p> 
-  {{ (email | async)?.email }}
-</p>
+<nav mat-tab-nav-bar mat-stretch-tabs>
+  <a mat-tab-link label="Uncalled Clients">Unfinished</a>
+  <a mat-tab-link label="Called Clients">Completed</a>
+  <a mat-tab-link label="Newly Assigned">Newly Assigned</a>
+</nav>
+<router-outlet></router-outlet>
