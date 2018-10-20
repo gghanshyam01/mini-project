@@ -26,15 +26,17 @@
       <span>Motorhood CRM System</span>
       <!-- This fills the remaining space of the current row -->
       <span class="example-fill-remaining-space"></span>
-      <span *ngIf="!((isHandset$ | async) && loggedIn)">
+      <span *ngIf="(!(isHandset$ | async) && !loggedIn); else lo">
         <a *ngFor="let navLink of navLinks" routerLink="{{ '/' + navLink.url }}" mat-button>
           {{ navLink.name }}</a>
       </span>
-      <span *ngIf="loggedIn">
-        <button type="button" mat-raised-button color="primary" [disabled]="showProgressBar" (click)="onLogoutClick()">
-          Logout
-        </button>
-      </span>
+      <ng-template #lo>
+        <span *ngIf="!(isHandset$ | async)">  
+          <button type="button" mat-raised-button color="primary" [disabled]="showProgressBar" (click)="onLogoutClick()">
+            Logout
+          </button>
+        </span>
+      </ng-template>
     </mat-toolbar>
     <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
     <!-- Add Content Here -->
