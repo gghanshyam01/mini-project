@@ -14,8 +14,8 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderNavComponent implements OnInit, OnDestroy {
   showProgressBar = false;
-  // loggedIn = true;
-  loggedIn: boolean;
+  loggedIn = true;
+  // loggedIn: boolean;
   subs: Subscription;
   logoutSubs: Subscription;
   @ViewChild('drawer')

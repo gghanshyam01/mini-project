@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Validators,
+  FormBuilder,
+  FormGroup,
+  FormGroupDirective
+} from '@angular/forms';
 
 import { AuthService } from '../auth.service';
 
@@ -9,6 +14,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  @ViewChild('f')
+  myFormRef: FormGroupDirective;
   checked = true;
   showProgressBar = false;
   hide = true;
@@ -49,6 +56,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {}
 
   upload(file: File) {
+    this.error = '';
     if (file) {
       this.fileName = file.name;
       this.file = file;
@@ -130,12 +138,14 @@ export class SignupComponent implements OnInit {
   }
 
   onSignupClick() {
+    if (!this.file || !this.file.type.match(/image.*/)) {
+      return (this.error = 'Please choose a valid ID proof');
+    }
     this.message = '';
     this.error = '';
     this.showProgressBar = true;
     const formData = new FormData();
     const form = this.signupForm.value;
-    console.log(form);
     Object.keys(form).forEach(key => formData.append(key, form[key]));
     formData.append('img', this.file);
 
@@ -143,12 +153,18 @@ export class SignupComponent implements OnInit {
       (res: any) => {
         this.message = res.msg;
         this.showProgressBar = false;
+        console.log(this.myFormRef);
+        this.myFormRef.resetForm();
+        this.fileName = 'No file chosen';
+        this.file = undefined;
       },
       err => {
         const monErr = err.error.errors;
         this.showProgressBar = false;
-        if (!monErr) {
-          return this.error = 'Some error occurred. Please try again';
+        if (!monErr && err.status >= 500) {
+          return (this.error = 'Some error occurred. Please try again');
+        } else if (!monErr && err.status >= 400) {
+          return (this.error = err.error);
         }
         if (monErr.email) {
           this.error = monErr.email.message;

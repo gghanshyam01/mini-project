@@ -7,7 +7,7 @@
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
-  <form [formGroup]="signupForm" enctype="multipart/form-data" (ngSubmit)="onSignupClick()">
+  <form [formGroup]="signupForm" enctype="multipart/form-data" (ngSubmit)="onSignupClick()" #f="ngForm">
     <mat-card-content>
       <div class="form-holder">
         <br>
@@ -62,7 +62,8 @@
         <button type="button" style="flex: 1 1 auto; margin: 15px;" mat-raised-button (click)="file.click()">Upload
           Image ({{ fileName }})</button>
 
-        <input #file type="file" name="photo" (change)="upload(file.files[0])" accept="image/*;" capture="true" style="display: none">
+        <input #file type="file" name="photo" (change)="upload(file.files[0])" accept="image/jpeg,image/x-png" capture="true"
+          style="display: none">
 
       </div>
       <mat-checkbox [checked]="checked">Register as Admin</mat-checkbox>
