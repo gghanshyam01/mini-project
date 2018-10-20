@@ -16,7 +16,7 @@ import { AuthService } from '../auth.service';
 export class SignupComponent implements OnInit {
   @ViewChild('f')
   myFormRef: FormGroupDirective;
-  checked = true;
+  checked = false;
   showProgressBar = false;
   hide = true;
   error = '';
@@ -47,7 +47,7 @@ export class SignupComponent implements OnInit {
         '',
         Validators.compose([Validators.required, Validators.minLength(5)])
       ],
-      isAdmin: ['']
+      isAdmin: [this.checked]
     },
     { validator: this.matchPasswordsValidator('password', 'confirmPassword') }
   );
@@ -141,9 +141,11 @@ export class SignupComponent implements OnInit {
     if (!this.file || !this.file.type.match(/image.*/)) {
       return (this.error = 'Please choose a valid ID proof');
     }
+
     this.message = '';
     this.error = '';
     this.showProgressBar = true;
+
     const formData = new FormData();
     const form = this.signupForm.value;
     Object.keys(form).forEach(key => formData.append(key, form[key]));
