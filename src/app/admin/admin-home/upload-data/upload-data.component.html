@@ -1,3 +1,20 @@
-<p>
-  upload-data works!
-</p>
+<mat-card class="upload-card" role="region">
+  <mat-card-header>
+    <mat-card-title>
+      <h3>
+        Please choose the excel file containing Customer Data
+      </h3>
+    </mat-card-title>
+  </mat-card-header>
+  <form enctype="multipart/form-data">
+    <mat-card-content>
+      <input #file type="file" (change)="upload(file.files[0])" accept="" style="display: none">
+      <button type="button" color="primary" (click)="file.click()" mat-button>
+        Choose File ({{ label }})
+      </button>
+    </mat-card-content>
+    <button type="button" (click)="onUploadClick()" mat-raised-button>Upload File</button>
+    <mat-card-actions>
+    </mat-card-actions>
+  </form>
+</mat-card>
