@@ -9,6 +9,20 @@ import { Observable } from 'rxjs';
 })
 export class UserHomeComponent implements OnInit {
   email: Observable<any>;
+  navLinks = [
+    {
+      path: 'unfinished',
+      label: 'Unfinished'
+    },
+    {
+      path: 'completed',
+      label: 'Completed'
+    },
+    {
+      path: 'newly-assigned',
+      label: 'Newly Assigned'
+    }
+  ];
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
