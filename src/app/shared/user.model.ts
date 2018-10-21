@@ -1,40 +1,48 @@
 export class User {
   constructor(
-    private firstName: string,
-    private lastName: string,
-    private emailId: string,
-    private mobileNumber: string,
-    private genderType: string,
-    private dateOfBirth: string,
-    private isAnAdmin: boolean,
-    private imageUrl: string
+    public firstName: string,
+    public lastName: string,
+    public email: string,
+    public mobileNumber: string,
+    public gender: string,
+    public dob: string,
+    public isAdmin: boolean,
+    public imageUrl: string
   ) {}
 
-  public get fullName(): string {
-    return this.firstName + this.lastName;
-  }
+  // public get fullName(): string {
+  //   return this.fName + this.lName;
+  // }
 
-  public get email(): string {
-    return this.emailId;
-  }
+  // public get firstName(): string {
+  //   return this.fName;
+  // }
 
-  public get mobileNo(): string {
-    return this.mobileNumber;
-  }
+  // public get lastName(): string {
+  //   return this.lName;
+  // }
 
-  public get gender(): string {
-    return this.genderType;
-  }
+  // public get email(): string {
+  //   return this.emailId;
+  // }
 
-  public get dob(): string {
-    return this.dateOfBirth;
-  }
+  // public get mobileNo(): string {
+  //   return this.mobileNumber;
+  // }
 
-  public get isAdmin(): boolean {
-    return this.isAnAdmin;
-  }
+  // public get genderType(): string {
+  //   return this.gender;
+  // }
 
-  public get imagePath(): string {
-    return this.imageUrl;
-  }
+  // public get birthDate(): string {
+  //   return this.dob;
+  // }
+
+  // public get isAnAdmin(): boolean {
+  //   return this.isAdmin;
+  // }
+
+  // public get imagePath(): string {
+  //   return this.imageUrl;
+  // }
 }

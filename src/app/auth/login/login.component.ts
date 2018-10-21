@@ -4,6 +4,8 @@ import { Validators, FormBuilder } from '@angular/forms';
 
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/shared/user.model';
+// import { UserDataService } from 'src/app/shared/user-data.service';
 
 @Component({
   selector: 'app-login',
@@ -59,10 +61,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLoginClick() {
     this.showProgressBar = true;
     this.subs = this.authService.loginUser(this.loginForm.value).subscribe(
-      user => {
-        console.log('Login', user);
+      resUser => {
+        console.log('Login', resUser.email);
+        // this.userService.user = new User(resUser.firstName, resUser.lastName, resUser.emailId)
         this.authService.loginStatusSource.next(true);
-        if (user.isAdmin) {
+        if (resUser.isAdmin) {
           return this.router.navigateByUrl('/admin-home');
         }
         this.router.navigateByUrl('/user-home');
