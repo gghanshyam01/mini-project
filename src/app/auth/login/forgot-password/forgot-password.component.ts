@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,7 +12,7 @@ export class ForgotPasswordComponent implements OnInit {
   showProgressBar = false;
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { DataTableDataSource } from './data-table-datasource';
+import { CustomerDataService } from '../../customer-data.service';
 
 @Component({
   selector: 'app-data-table',
@@ -19,6 +20,9 @@ export class DataTableComponent implements OnInit {
   displayedColumns = [];
 
   @Input()
+  isDialog = false;
+
+  @Input()
   data = [];
 
   ngOnInit() {
@@ -27,5 +31,13 @@ export class DataTableComponent implements OnInit {
       this.sort,
       this.data
     );
+  }
+
+  constructor(private custSvc: CustomerDataService) {
+
+  }
+
+  openDialog(id: string) {
+    this.custSvc.show(id);
   }
 }
