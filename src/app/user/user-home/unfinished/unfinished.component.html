@@ -1,3 +1,5 @@
-<p>
-  unfinished works!
-</p>
+<span *ngIf="(customers.length === 0); else disp;"></span>
+<ng-template #disp>
+    <app-data-table [data]="customers" [displayedColumns]="filterBy"></app-data-table>
+
+</ng-template>

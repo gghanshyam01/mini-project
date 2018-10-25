@@ -1,15 +1,13 @@
-import { Component, OnInit, ViewChild, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
-
 import { DataTableDataSource } from './data-table-datasource';
-import { InfoShareService } from 'src/app/shared/info-share.service';
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.css']
 })
-export class DataTableComponent implements OnInit, OnDestroy {
+export class DataTableComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
   @ViewChild(MatSort)
@@ -23,26 +21,11 @@ export class DataTableComponent implements OnInit, OnDestroy {
   @Input()
   data = [];
 
-  constructor(private infoSvc: InfoShareService) {}
-
   ngOnInit() {
-    // this.infoSvc.showProgressBar();
-    // this.subs = this.customerSvc.getCustomers().subscribe(data => {
-    //   this.customerSvc.customers = data;
-    //   this.dataSource = new DataTableDataSource(
-    //     this.paginator,
-    //     this.sort,
-    //     this.data
-    //   );
-    //   this.infoSvc.hideProgressBar();
-    // });
     this.dataSource = new DataTableDataSource(
       this.paginator,
       this.sort,
       this.data
     );
-  }
-  ngOnDestroy() {
-    this.infoSvc.hideProgressBar();
   }
 }

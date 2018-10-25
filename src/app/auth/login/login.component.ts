@@ -5,6 +5,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/shared/user.model';
+import { InfoShareService } from 'src/app/shared/info-share.service';
 // import { UserDataService } from 'src/app/shared/user-data.service';
 
 @Component({

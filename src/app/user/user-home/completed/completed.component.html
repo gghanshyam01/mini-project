@@ -1,3 +1,7 @@
-<p>
-  completed works!
-</p>
+<span *ngIf="(customers.length === 0); else disp;">
+  <h3>No records to show</h3>
+</span>
+<ng-template #disp>
+  <app-data-table [data]="customers" [displayedColumns]="filterBy"></app-data-table>
+
+</ng-template>
