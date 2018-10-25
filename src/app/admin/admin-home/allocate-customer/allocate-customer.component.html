@@ -1,3 +1,27 @@
-<p>
-  allocate-customer works!
-</p>
+<form class="example-form" [formGroup]="assignCustomer" (ngSubmit)="assignClick()" #f="ngForm">
+    <mat-form-field class="example-full-width">
+        <input matInput formControlName="keyword" placeholder="Filter Data">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select [(value)]="selected" formControlName="property" placeholder="Filter By" (selectionChange)="filterChanged()">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let filter of filterBy;" value="{{ filter }}">{{ filter }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" placeholder="Select User" aria-label="User" matInput formControlName="user"
+            [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let user of userList" [value]="user._id">
+                {{user.firstName}} {{ user.lastName }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <button color="primary" [disabled]="assignCustomer.invalid" type="submit" mat-raised-button>Assign to User</button>
+</form>
+<mat-error style="text-align: center">{{ error }}</mat-error>
+<span *ngIf="(customers.length === 0); else diff;"></span>
+<ng-template #diff>
+
+    <app-data-table [data]="customers" [displayedColumns]="filterBy"></app-data-table>
+</ng-template>

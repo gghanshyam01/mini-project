@@ -1,0 +1,29 @@
+.example-form {
+  /* min-width: 150px;
+  max-width: 500px;
+  /* width: 100%; */
+  margin: 5px auto;
+  max-width: 700px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+mat-form-field {
+  /* width: 270px; */
+  flex: 1 1 auto;
+  margin: 15px;
+  width: 100%;
+}
+
+button {
+  margin: auto 5px;
+  min-width: 80px;
+}
+
+@media screen and (max-width: 700px) {
+  .example-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+  }
+}

@@ -9,12 +9,16 @@
   <form enctype="multipart/form-data">
     <mat-card-content>
       <input #file type="file" (change)="upload(file.files[0])" accept="" style="display: none">
-      <button type="button" color="primary" (click)="file.click()" mat-button>
+      <button type="button" (click)="file.click()" mat-raised-button>
         Choose File ({{ label }})
       </button>
+      <br>
+      <br>
+      <mat-error>{{ err }}</mat-error>
     </mat-card-content>
-    <button type="button" (click)="onUploadClick()" mat-raised-button>Upload File</button>
     <mat-card-actions>
+      <div class="success">{{ msg }}</div>
     </mat-card-actions>
+    <button type="button" (click)="onUploadClick()" color="primary" [disabled]="showProgressBar" mat-raised-button>Upload File</button>
   </form>
 </mat-card>

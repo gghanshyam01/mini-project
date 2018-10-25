@@ -1,4 +1,11 @@
-import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  OnInit,
+  OnDestroy,
+  AfterViewChecked,
+  ChangeDetectorRef
+} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDrawer, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
@@ -6,17 +13,19 @@ import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { AuthService } from '../auth/auth.service';
+import { InfoShareService } from '../shared/info-share.service';
 
 @Component({
   selector: 'app-header-nav',
   templateUrl: './header-nav.component.html',
   styleUrls: ['./header-nav.component.css']
 })
-export class HeaderNavComponent implements OnInit, OnDestroy {
+export class HeaderNavComponent implements OnInit, OnDestroy, AfterViewChecked {
   showProgressBar = false;
   loggedIn = true;
   // loggedIn: boolean;
   subs: Subscription;
+  progressBarSubs: Subscription;
   logoutSubs: Subscription;
   @ViewChild('drawer')
   drawer: MatDrawer;
@@ -39,15 +48,22 @@ export class HeaderNavComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private infoSvc: InfoShareService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.subs = this.authService.loginStatusSource.subscribe(status => {
       this.loggedIn = status;
     });
+    this.progressBarSubs = this.infoSvc.headerProgressBar.subscribe(val => {
+      this.showProgressBar = val;
+    });
   }
-
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
+  }
   onSidenavClick() {
     this.drawer.close();
   }
