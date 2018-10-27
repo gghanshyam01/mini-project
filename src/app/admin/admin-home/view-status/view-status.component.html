@@ -1,3 +1,42 @@
-<p>
-  view-status works!
-</p>
+<!-- <span *ngIf="isEmpty(payload); else chart;">
+  Loading
+</span>
+<ng-template #chart>
+  <google-chart [data]="payload"></google-chart>
+</ng-template> -->
+
+
+<span *ngIf="(payload.length === 0); else diff;">Loading...</span>
+<ng-template #diff>
+  <table mat-table [dataSource]="payload" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Total Customers </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalCount}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="rCount">
+      <th mat-header-cell *matHeaderCellDef> Remaining Count </th>
+      <td mat-cell *matCellDef="let element"> {{element.remainingCount}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="assCount">
+      <th mat-header-cell *matHeaderCellDef> Assigned Count </th>
+      <td mat-cell *matCellDef="let element"> {{element.assignedCount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fCount">
+      <th mat-header-cell *matHeaderCellDef> Finished Count </th>
+      <td mat-cell *matCellDef="let element"> {{element.finishedCount}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-template>

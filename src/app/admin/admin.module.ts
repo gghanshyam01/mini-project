@@ -13,6 +13,7 @@ import { DataTableComponent } from './admin-home/allocate-customer/data-table/da
 import { CustomerDataService } from './shared/customer-data.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+
 @NgModule({
   imports: [
     CommonModule,

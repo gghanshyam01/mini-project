@@ -25,4 +25,9 @@ export class CustomerDataService {
   allocateCustomers(user, customers: Customer[]) {
     return this.http.patch(`/api/users/${user}`, customers);
   }
+
+
+  getData() {
+    return this.http.get(`/api/customers/charts`);
+  }
 }

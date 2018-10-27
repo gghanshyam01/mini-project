@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         // this.userService.user = new User(resUser.firstName, resUser.lastName, resUser.emailId)
         this.authService.loginStatusSource.next(true);
         if (resUser.isAdmin) {
+          this.showProgressBar = false;
           return this.router.navigateByUrl('/admin-home');
         }
         this.router.navigateByUrl('/user-home');
