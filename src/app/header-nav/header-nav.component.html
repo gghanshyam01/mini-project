@@ -31,8 +31,8 @@
           {{ navLink.name }}</a>
       </span>
       <ng-template #lo>
-        <span *ngIf="!(isHandset$ | async)">  
-          <button type="button" mat-raised-button color="primary" [disabled]="showProgressBar" (click)="onLogoutClick()">
+        <span *ngIf="!(isHandset$ | async)">
+          <button type="button" mat-raised-button [disabled]="showProgressBar" (click)="onLogoutClick()">
             Logout
           </button>
         </span>
