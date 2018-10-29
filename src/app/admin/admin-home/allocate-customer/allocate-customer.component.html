@@ -17,7 +17,9 @@
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
-    <button color="primary" [disabled]="assignCustomer.invalid" type="submit" mat-raised-button>Assign to User</button>
+    <button color="accent" style="width: 100%;" [disabled]="assignCustomer.invalid" type="submit" mat-raised-button>
+        Assign to User
+    </button>
 </form>
 <mat-error style="text-align: center">{{ error }}</mat-error>
 <span *ngIf="(customers.length === 0); else diff;"></span>

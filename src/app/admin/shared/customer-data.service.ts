@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Customer } from '../admin-home/allocate-customer/data-table/data-table-datasource';
 import { User } from './user.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CustomerDataService {
   customers: Customer[] = [];
   constructor(private http: HttpClient) {}
@@ -19,13 +17,14 @@ export class CustomerDataService {
   }
 
   getFilteredCustomers(key, value) {
-    return this.http.post<Customer[]>(`/api/customers`, { [key]: value });
+    return this.http.post<Customer[]>(`/api/customers/filter`, {
+      [key]: value
+    });
   }
 
   allocateCustomers(user, customers: Customer[]) {
     return this.http.patch(`/api/users/${user}`, customers);
   }
-
 
   getData() {
     return this.http.get(`/api/customers/charts`);

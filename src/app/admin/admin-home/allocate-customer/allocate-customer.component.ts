@@ -45,6 +45,7 @@ export class AllocateCustomerComponent implements OnInit, OnDestroy {
   filterChanged() {
     this.error = '';
     this.customers = [];
+    console.log(this.assignCustomer.value.keyword);
     this.custFilterSub = this.custSvc
       .getFilteredCustomers(
         this.assignCustomer.value.property,

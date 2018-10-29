@@ -1,0 +1,18 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$brand-theme-primary: mat-palette($mat-grey);
+$brand-theme-accent: mat-palette($mat-deep-purple, A200, A100, A400);
+
+$brand-theme-warn: mat-palette($mat-red);
+
+$brand-theme: mat-light-theme(
+  $brand-theme-primary,
+  $brand-theme-accent,
+  $brand-theme-warn
+);
+
+@include angular-material-theme($brand-theme);
+
+// "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"

@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Customer } from './user-home/data-table/data-table-datasource';
 import { MatDialog } from '@angular/material';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CustomerDataService {
   constructor(private http: HttpClient, private dialog: MatDialog) {}
 
