@@ -6,6 +6,8 @@ import {
   FormGroupDirective
 } from '@angular/forms';
 
+import * as moment from 'moment';
+
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -23,7 +25,7 @@ export class SignupComponent implements OnInit {
   message = '';
   fileName = 'No file chosen';
   file: File;
-
+  startDate = moment([1990, 0, 1]);
   signupForm = this.fb.group(
     {
       firstName: ['', Validators.required],

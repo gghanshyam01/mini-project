@@ -39,8 +39,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </div>
     <ng-template #nope>
-
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row._id)"></tr>
+        <tr class="dialog" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row._id)"></tr>
     </ng-template>
   </table>
 

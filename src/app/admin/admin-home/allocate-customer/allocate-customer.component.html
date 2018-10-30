@@ -9,8 +9,8 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <input type="text" placeholder="Select User" aria-label="User" matInput formControlName="user"
-            [matAutocomplete]="auto">
+        <input type="text" placeholder="Select User" #userText aria-label="User" matInput formControlName="user"
+            [matAutocomplete]="auto" (keydown)="onKeyDownPress(userText)">
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let user of userList" [value]="user._id">
                 {{user.firstName}} {{ user.lastName }}

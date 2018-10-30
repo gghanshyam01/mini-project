@@ -28,7 +28,6 @@ export class NewlyAssignedComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.infoSvc.showProgressBar();
     this.custSubs = this.custSvc.getCustomersNewlyAssigned().subscribe(res => {
-      console.log(res);
       this.customers = res;
       this.infoSvc.hideProgressBar();
     });

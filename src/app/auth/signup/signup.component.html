@@ -41,7 +41,7 @@
           <input matInput [matDatepicker]="myDatepicker" tabindex="6" formControlName="dob" placeholder="Enter your Date of Birth"
             required>
           <mat-datepicker-toggle matPrefix [for]="myDatepicker"></mat-datepicker-toggle>
-          <mat-datepicker #myDatepicker></mat-datepicker>
+          <mat-datepicker [startAt]="startDate" startView="year" #myDatepicker touchUi></mat-datepicker>
           <mat-error *ngIf="signupForm.invalid">{{ getDobErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>

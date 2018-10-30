@@ -71,6 +71,16 @@ export class AllocateCustomerComponent implements OnInit, OnDestroy {
     });
   }
 
+  onKeyDownPress(input: HTMLInputElement) {
+    if (input.value === '') {
+      console.log('if');
+      return false;
+    } else {
+      console.log('else');
+      input.value = '';
+      return false;
+    }
+  }
   assignClick() {
     this.error = '';
     const data = this.assignCustomer.value;

@@ -9,7 +9,7 @@ import { InfoShareService } from 'src/app/shared/info-share.service';
   templateUrl: './unfinished.component.html',
   styleUrls: ['./unfinished.component.css']
 })
-export class UnfinishedComponent implements OnInit,  OnDestroy {
+export class UnfinishedComponent implements OnInit, OnDestroy {
   filterBy = [
     'vehicleNumber',
     'customerName',
@@ -20,12 +20,14 @@ export class UnfinishedComponent implements OnInit,  OnDestroy {
   ];
   custSubs: Subscription;
   customers: Customer[] = [];
-  constructor(private custSvc: CustomerDataService, private infoSvc: InfoShareService) {}
+  constructor(
+    private custSvc: CustomerDataService,
+    private infoSvc: InfoShareService
+  ) {}
 
   ngOnInit() {
     this.infoSvc.showProgressBar();
     this.custSubs = this.custSvc.getCustomersUnfinished().subscribe(res => {
-      console.log(res);
       this.customers = res;
       this.infoSvc.hideProgressBar();
     });

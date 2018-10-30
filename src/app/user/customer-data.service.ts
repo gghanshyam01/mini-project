@@ -26,5 +26,6 @@ export class CustomerDataService {
     //   console.log('The dialog was closed');
     //   this.animal = result;
     // });
+    console.log('Clicked: ', id);
   }
 }

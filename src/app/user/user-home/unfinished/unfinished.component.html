@@ -1,5 +1,6 @@
 <span *ngIf="(customers.length === 0); else disp;"></span>
 <ng-template #disp>
-    <app-data-table [data]="customers" [displayedColumns]="filterBy" [isDialog]="true"></app-data-table>
+    <app-data-table [data]="customers" [isDialog]="true" [displayedColumns]="filterBy" [isDialog]="true">
+    </app-data-table>
 
 </ng-template>
