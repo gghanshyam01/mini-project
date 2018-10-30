@@ -23,8 +23,8 @@ export class AllocateCustomerComponent implements OnInit, OnDestroy {
   ];
 
   assignCustomer = this.fb.group({
-    keyword: [''],
-    property: [''],
+    keyword: ['', Validators.required],
+    property: ['', Validators.required],
     user: ['', Validators.required]
   });
 
@@ -45,7 +45,6 @@ export class AllocateCustomerComponent implements OnInit, OnDestroy {
   filterChanged() {
     this.error = '';
     this.customers = [];
-    console.log(this.assignCustomer.value.keyword);
     this.custFilterSub = this.custSvc
       .getFilteredCustomers(
         this.assignCustomer.value.property,
@@ -73,31 +72,32 @@ export class AllocateCustomerComponent implements OnInit, OnDestroy {
 
   onKeyDownPress(input: HTMLInputElement) {
     if (input.value === '') {
-      console.log('if');
       return false;
     } else {
-      console.log('else');
       input.value = '';
+      this.assignCustomer.controls.user.setErrors({
+        required: 'Please select all values'
+      });
       return false;
     }
   }
   assignClick() {
     this.error = '';
     const data = this.assignCustomer.value;
-    console.log(data.user, this.customers);
-    if (data.keyword === '' || data.property === '') {
+    if (
+      this.assignCustomer.value.keyword === '' ||
+      this.assignCustomer.value.property === ''
+    ) {
       return (this.error = 'Please select all values');
     }
     this.custSvc.allocateCustomers(data.user, this.customers).subscribe(
       res => {
-        console.log(res);
       },
       err => {
         if (err.status === 200) {
           return this.filterChanged();
         }
         this.error = err.error;
-        console.log(err);
       }
     );
   }
