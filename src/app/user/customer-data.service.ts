@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Customer } from './user-home/data-table/data-table-datasource';
 import { MatDialog } from '@angular/material';
+import { FeedbackDialogComponent, Feedback } from './user-home/unfinished/feedback-dialog/feedback-dialog.component';
 
 @Injectable()
 export class CustomerDataService {
@@ -18,14 +19,15 @@ export class CustomerDataService {
   }
 
   show(id: string) {
-    // const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-    //   width: '250px',
-    //   data: {name: this.name, animal: this.animal}
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.animal = result;
-    // });
-    console.log('Clicked: ', id);
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, {
+      width: '300px',
+      height: '400px',
+      data: { id: id }
+    });
+    return dialogRef.afterClosed();
+  }
+
+  enterFeedback(id: string, feedback: Feedback) {
+    return this.http.patch(`/api/customers/${id}`, feedback);
   }
 }

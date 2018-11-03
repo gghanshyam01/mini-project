@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import {
   MatTabsModule,
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
-  MatDialogModule
+  MatDialogModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatButtonModule
 } from '@angular/material';
 
 const ngUserMatModules = [
@@ -14,7 +18,12 @@ const ngUserMatModules = [
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
-  MatDialogModule
+  MatDialogModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatButtonModule
 ];
 
 @NgModule({

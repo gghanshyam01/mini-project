@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Please enter the feedback of the call</h1>
+<div mat-dialog-content>
+  <form [formGroup]="feedbackForm">
+
+    <mat-form-field>
+      <textarea placeholder="Enter the feedback" formControlName="comment" matInput cdkFocusInitial></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose next call date" formControlName="nextCallDate"
+        required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-checkbox [checked]="isFinished" formControlName="finished">Call Completed?</mat-checkbox>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="feedbackForm.value" [disabled]="!isValid">Save</button>
+</div>

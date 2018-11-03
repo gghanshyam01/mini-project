@@ -60,14 +60,25 @@ export class AllocateCustomerComponent implements OnInit, OnDestroy {
       });
   }
   ngOnInit() {
-    this.userSub = this.custSvc.getUsers().subscribe(res => {
-      this.userList = res;
-    });
+    this.userSub = this.custSvc.getUsers().subscribe(
+      res => {
+        this.userList = res;
+      },
+      err => {
+        this.error = err.error;
+        this.infoSvc.hideProgressBar();
+      }
+    );
     this.infoSvc.showProgressBar();
-    this.custSub = this.custSvc.getCustomers().subscribe(res => {
-      this.customers = res;
-      this.infoSvc.hideProgressBar();
-    });
+    this.custSub = this.custSvc.getCustomers().subscribe(
+      res => {
+        this.customers = res;
+        this.infoSvc.hideProgressBar();
+      },
+      err => {
+        this.infoSvc.hideProgressBar();
+      }
+    );
   }
 
   onKeyDownPress(input: HTMLInputElement) {
@@ -91,8 +102,7 @@ export class AllocateCustomerComponent implements OnInit, OnDestroy {
       return (this.error = 'Please select all values');
     }
     this.custSvc.allocateCustomers(data.user, this.customers).subscribe(
-      res => {
-      },
+      res => {},
       err => {
         if (err.status === 200) {
           return this.filterChanged();

@@ -10,21 +10,27 @@ import { DataTableComponent } from './user-home/data-table/data-table.component'
 import { CustomerDataService } from './customer-data.service';
 import { UserMaterialModule } from './user-material/user-material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FeedbackDialogComponent } from './user-home/unfinished/feedback-dialog/feedback-dialog.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     UserRoutingModule,
     UserMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     UserHomeComponent,
     UnfinishedComponent,
     CompletedComponent,
     NewlyAssignedComponent,
-    DataTableComponent
+    DataTableComponent,
+    FeedbackDialogComponent
   ],
+  entryComponents: [FeedbackDialogComponent],
   providers: [CustomerDataService]
 })
 export class UserModule {}
