@@ -13,6 +13,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-password.component';
 import { UserActivateComponent } from './auth/user-activate/user-activate.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
     MaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -4,11 +4,10 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { User } from '../shared/user.model';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
   loginStatusSource = new BehaviorSubject<boolean>(true);
+  userIsAdmin: boolean;
 
   constructor(private http: HttpClient) {}
 
@@ -31,6 +30,7 @@ export class AuthService {
       this.http.get(`/api/users/me`, { observe: 'response' }).subscribe(
         (res: HttpResponse<any>) => {
           if (res.status === 200) {
+            this.userIsAdmin = res.body.isAdmin;
             this.loginStatusSource.next(true);
             resolve(true);
           } else {

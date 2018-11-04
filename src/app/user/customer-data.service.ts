@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Customer } from './user-home/data-table/data-table-datasource';
 import { MatDialog } from '@angular/material';
+
 import { FeedbackDialogComponent, Feedback } from './user-home/unfinished/feedback-dialog/feedback-dialog.component';
+import { Customer } from './user-home/data-table/data-table-datasource';
 
 @Injectable()
 export class CustomerDataService {

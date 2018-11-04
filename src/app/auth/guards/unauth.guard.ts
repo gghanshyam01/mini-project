@@ -24,10 +24,13 @@ export class UnauthGuard implements CanActivate {
       if (!isAuthenticated) {
         return true;
       }
-      // this.router.navigateByUrl('/user-home');
+      console.log(this.authService.userIsAdmin);
+      if (this.authService.userIsAdmin) {
+        this.router.navigateByUrl('/admin-home');
+      } else {
+        this.router.navigateByUrl('/user-home');
+      }
       return false;
     });
-    // console.log(this.authService.isLoggedIn);
-    // return !this.authService.isLoggedIn;
   }
 }

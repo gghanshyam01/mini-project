@@ -13,7 +13,6 @@ export class UnfinishedComponent implements OnInit, OnDestroy {
   filterBy = [
     'vehicleNumber',
     'customerName',
-    'contactNumber',
     'carMake',
     'carModel',
     'vehicleType'
