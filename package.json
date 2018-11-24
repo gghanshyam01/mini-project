@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-opt": "ng build --prod --build-optimizer --base-href=https://gghanshyam01.github.io/mini-project/",
+    "build-opt": "ng build --prod --build-optimizer --base-href=https://motorhood-crm.herokuapp.com/",
     "git-publish": "angular-cli-ghpages --dir=dist/CRM"
   },
   "private": true,

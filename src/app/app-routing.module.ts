@@ -22,12 +22,14 @@ const appRoutes: Routes = [
   {
     path: 'user-home',
     loadChildren: './user/user.module#UserModule',
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin-home',
     loadChildren: './admin/admin.module#AdminModule',
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   { path: 'activate/:token', component: UserActivateComponent }
 ];

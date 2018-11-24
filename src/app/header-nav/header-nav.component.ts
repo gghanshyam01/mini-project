@@ -105,6 +105,7 @@ export class HeaderNavComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   ngOnDestroy() {
     this.subs.unsubscribe();
+    this.progressBarSubs.unsubscribe();
     if (this.logoutSubs) {
       this.logoutSubs.unsubscribe();
     }
